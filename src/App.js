@@ -2,6 +2,23 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+class LoginSample extends React.Component {
+  constructor(){
+    super();
+    this.state={name:''}
+  }
+  componentWillMount(){
+    fetch('http://localhost:3001').then(results=>{
+return results.json()
+    }).then(data=>{
+      console.log("data",data)
+      this.setState({name:data.name})
+    })
+  }
+  render(){
+    return (<div>Hello, this is {this.state.name}</div>)
+  }
+}
 function App() {
   return (
     <div className="App">
@@ -23,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginSample;
